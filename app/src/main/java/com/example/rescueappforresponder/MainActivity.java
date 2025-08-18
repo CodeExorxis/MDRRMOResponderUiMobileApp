@@ -33,28 +33,28 @@ public class MainActivity extends AppCompatActivity {
             root.btnPcrReport.setVisibility(View.GONE);
         });
 
-        // --- Vehicular options ---
+        // --- Status Report Options ---
         root.btnOnScene.setOnClickListener(v -> {
             selectedStatus = "On Scene";
-            resetSelectectedStatus();
+            resetSelectedStatus();
             root.btnOnScene.setBackgroundResource(R.drawable.btn_selected_flat);
         });
 
         root.btnTransferPatient.setOnClickListener(v -> {
             selectedStatus = "Transferring Patient";
-            resetSelectectedStatus();
+            resetSelectedStatus();
             root.btnTransferPatient.setBackgroundResource(R.drawable.btn_selected_flat);
         });
 
         root.btnCompleted.setOnClickListener(v -> {
             selectedStatus = "Completed";
-            resetSelectectedStatus();
+            resetSelectedStatus();
             root.btnCompleted.setBackgroundResource(R.drawable.btn_selected_flat);
         });
 
         root.btnSubmitStatusReport.setOnClickListener(v -> {
             if (selectedStatus.isEmpty()) {
-                Toast.makeText(this, "Please select a vehicular condition.", Toast.LENGTH_SHORT).show();
+                Toast.makeText(this, "Please select a Status Report.", Toast.LENGTH_SHORT).show();
                 return;
             }
 
@@ -62,11 +62,11 @@ public class MainActivity extends AppCompatActivity {
             root.statusReportCategories.setVisibility(View.GONE);
             root.btnStatusReport.setVisibility(View.VISIBLE);
             root.btnPcrReport.setVisibility(View.VISIBLE);
-            resetSelectectedStatus();
+            resetSelectedStatus();
             selectedStatus = "";
         });
     }
-    private void resetSelectectedStatus() {
+    private void resetSelectedStatus() {
         root.btnOnScene.setBackgroundResource(R.drawable.btn_flat_red);
         root.btnTransferPatient.setBackgroundResource(R.drawable.btn_flat_red);
         root.btnCompleted.setBackgroundResource(R.drawable.btn_flat_red);
