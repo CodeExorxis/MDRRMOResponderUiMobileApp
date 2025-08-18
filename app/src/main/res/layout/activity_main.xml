@@ -72,7 +72,7 @@
             app:backgroundTint="@null"/>
 
         <Button
-            android:id="@+id/btn_PcrForm"
+            android:id="@+id/btn_PcrReport"
             android:layout_width="180dp"
             android:layout_height="70dp"
             android:textStyle="bold"
@@ -84,7 +84,7 @@
             android:background="@drawable/btn_round_red"
             app:backgroundTint="@null"/>
 
-                                                        <!--Status report Categories-->
+                                <!--Status report Categories-->
         <LinearLayout
             android:id="@+id/statusReportCategories"
             android:layout_width="match_parent"
@@ -134,7 +134,7 @@
                 app:backgroundTint="@null"/>
 
             <Button
-                android:id="@+id/btnSubmitMedical"
+                android:id="@+id/btnSubmitStatusReport"
                 android:layout_width="220dp"
                 android:layout_height="70dp"
                 android:text="Submit Report"
