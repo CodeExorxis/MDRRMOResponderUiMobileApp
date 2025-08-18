@@ -12,7 +12,7 @@
     <string name="otp_digit_3">0</string>
     <string name="otp_digit_4">0</string>
     <string name="submit_button_text">Submit</string>
-    <string name="EmReport">Emergency\nReport</string>
-    <string name="EmHotline">Emergency\nHotline</string>
+    <string name="StatsReport">STATUS Report</string>
+    <string name="PcrReport">PCR Report</string>
 
 </resources>
