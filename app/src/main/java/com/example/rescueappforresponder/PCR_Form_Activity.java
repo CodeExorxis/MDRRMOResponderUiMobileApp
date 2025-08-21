@@ -4,6 +4,7 @@ import android.app.DatePickerDialog;
 import android.app.TimePickerDialog;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.ArrayAdapter;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -33,6 +34,8 @@ public class PCR_Form_Activity extends AppCompatActivity {
                 root.toggleCallInfo.setImageResource(R.drawable.ic_drop_down);
             }
         });
+
+
 
         // Time Picker for "Time of Call"
         root.edtTimeOfCall.setOnClickListener(v -> {
@@ -133,6 +136,55 @@ public class PCR_Form_Activity extends AppCompatActivity {
             } else {
                 root.edtOtherInformThrough.setVisibility(View.GONE);
             }
+        });
+                    //Patient Information Layout
+
+        // Toggle for Patient Information
+        root.togglePatientInfo.setOnClickListener(v -> {
+            if (root.layoutPatientInfo.getVisibility() == View.GONE) {
+                root.layoutPatientInfo.setVisibility(View.VISIBLE);
+                root.togglePatientInfo.setImageResource(R.drawable.ic_drop_up);
+            } else {
+                root.layoutPatientInfo.setVisibility(View.GONE);
+                root.togglePatientInfo.setImageResource(R.drawable.ic_drop_down);
+            }
+        });
+
+        String[] sexOptions = {"Male", "Female", "Other", "Prefer not to say"};
+
+        ArrayAdapter<String> adapter = new ArrayAdapter<>(
+                this,
+                android.R.layout.simple_dropdown_item_1line,
+                sexOptions
+        );
+
+        root.spinnerSex.setAdapter(adapter);
+
+        // This is the Date Picker for Date of Response
+        root.edtDateBirthPatientInfo.setOnClickListener(v -> {
+            Calendar calendar = Calendar.getInstance();
+            int year = calendar.get(Calendar.YEAR);
+            int month = calendar.get(Calendar.MONTH);
+            int day = calendar.get(Calendar.DAY_OF_MONTH);
+
+            DatePickerDialog datePickerDialog = new DatePickerDialog(
+                    this,
+                    (view, selectedYear, selectedMonth, selectedDay) -> {
+                        Calendar cal = Calendar.getInstance();
+                        cal.set(Calendar.YEAR, selectedYear);
+                        cal.set(Calendar.MONTH, selectedMonth);
+                        cal.set(Calendar.DAY_OF_MONTH, selectedDay);
+
+                        SimpleDateFormat sdf = new SimpleDateFormat("MMMM dd, yyyy", Locale.getDefault());
+                        root.edtDateBirthPatientInfo.setText(sdf.format(cal.getTime()));
+                    },
+                    year,
+                    month,
+                    day
+            );
+
+            datePickerDialog.setTitle("Select Date");
+            datePickerDialog.show();
         });
 
     }

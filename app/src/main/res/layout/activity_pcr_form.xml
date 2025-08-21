@@ -39,9 +39,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
 
-                <!-- Title Row -->
                 <RelativeLayout
-                    android:id="@+id/headerCallInfo"
+                    android:id="@+id/headerCallInformation"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:padding="12dp">
@@ -73,7 +72,7 @@
                     android:layout_height="wrap_content"
                     android:orientation="vertical"
                     android:padding="12dp"
-                    android:layout_below="@id/headerCallInfo"
+                    android:layout_below="@id/headerCallInformation"
                     android:visibility="gone">
 
                     <!-- Name of Caller -->
@@ -226,7 +225,7 @@
                         </LinearLayout>
                     </RadioGroup>
 
-                    <!-- Hidden input for Other -->
+                    <!-- Hidden input for Other inform by  -->
                     <EditText
                         android:id="@+id/edtOtherInformedBy"
                         android:layout_width="match_parent"
@@ -326,6 +325,335 @@
             </RelativeLayout>
         </androidx.cardview.widget.CardView>
 
+        <!--Patient Information Layout card view-->
+
+        <androidx.cardview.widget.CardView
+            android:id="@+id/PatientInformation"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="1dp"
+            app:cardElevation="2dp"
+            app:cardCornerRadius="8dp">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <RelativeLayout
+                    android:id="@+id/headerPatientInformation"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:padding="12dp">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:drawableStart="@drawable/ic_person"
+                        android:drawablePadding="8dp"
+                        android:text="Patient Information"
+                        android:textSize="16sp"
+                        android:textStyle="bold"
+                        android:layout_alignParentStart="true"
+                        android:layout_centerVertical="true"/>
+
+                    <ImageView
+                        android:id="@+id/togglePatientInfo"
+                        android:layout_width="24dp"
+                        android:layout_height="24dp"
+                        android:src="@drawable/ic_drop_down"
+                        android:layout_alignParentEnd="true"
+                        android:layout_centerVertical="true"/>
+                </RelativeLayout>
+
+                <!-- Hidden Content of Patient Information -->
+                <LinearLayout
+                    android:id="@+id/layoutPatientInfo"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:padding="12dp"
+                    android:layout_below="@id/headerPatientInformation"
+                    android:visibility="gone">
+
+
+                    <!-- Patient Name -->
+                    <com.google.android.material.textfield.TextInputLayout
+                        android:id="@+id/layout_edtPatientName"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginVertical="3dp"
+                        android:hint="Name of the Caller">
+
+                        <com.google.android.material.textfield.TextInputEditText
+                            android:id="@+id/edtPatientName"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:maxLength="50"
+                            android:drawableStart="@drawable/ic_person"
+                            android:drawablePadding="10dp"
+                            android:inputType="textCapWords" />
+                    </com.google.android.material.textfield.TextInputLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+                                                <!--Spinner for sex-->
+                        <com.google.android.material.textfield.TextInputLayout
+                            android:id="@+id/layout_edtSex"
+                            android:layout_width="150dp"
+                            android:layout_height="wrap_content"
+                            android:hint=" Select Sex"
+                            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                            android:layout_marginTop="1dp"
+                            app:endIconMode="dropdown_menu">
+
+                            <AutoCompleteTextView
+                                android:id="@+id/spinnerSex"
+                                android:layout_width="match_parent"
+                                android:layout_height="50dp"
+                                android:textAlignment="center"
+                                android:inputType="none"
+                                android:focusable="false"
+                                android:clickable="true"/>
+                        </com.google.android.material.textfield.TextInputLayout>
+
+                        <com.google.android.material.textfield.TextInputLayout
+                            android:id="@+id/layout_edtAgePatientInfo"
+                            android:layout_width="150dp"
+                            android:layout_height="55dp"
+                            android:layout_marginTop="3dp"
+                            android:layout_marginStart="10dp"
+                            android:hint="Age">
+
+                            <com.google.android.material.textfield.TextInputEditText
+                                android:id="@+id/edtAgePatientInfo"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:maxLength="50"
+                                android:drawablePadding="10dp"
+                                android:inputType="textCapWords" />
+                        </com.google.android.material.textfield.TextInputLayout>
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical">
+
+                        <!-- Date of Birth -->
+                        <com.google.android.material.textfield.TextInputLayout
+                            android:id="@+id/layout_edtDateBirthPatientInfo"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginVertical="3dp"
+                            android:hint="Date of Birth (mm/dd/yyyy)">
+
+                            <com.google.android.material.textfield.TextInputEditText
+                                android:id="@+id/edtDateBirthPatientInfo"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:maxLength="50"
+                                android:drawableStart="@drawable/ic_date"
+                                android:drawablePadding="10dp"
+                                android:inputType="textCapWords" />
+                        </com.google.android.material.textfield.TextInputLayout>
+
+                        <!-- Address -->
+                        <com.google.android.material.textfield.TextInputLayout
+                            android:id="@+id/layout_edtAddressPatientInfo"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginVertical="3dp"
+                            android:hint="Address">
+
+                            <com.google.android.material.textfield.TextInputEditText
+                                android:id="@+id/edtAddressPatientInfo"
+                                android:layout_width="match_parent"
+                                android:layout_height="70dp"
+                                android:maxLength="50"
+                                android:drawableStart="@drawable/ic_location2"
+                                android:drawablePadding="10dp"
+                                android:inputType="textCapWords" />
+                        </com.google.android.material.textfield.TextInputLayout>
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+                                                        <!--Nationality and Contact no.-->
+                        <com.google.android.material.textfield.TextInputLayout
+                            android:id="@+id/layout_edtNationalityPatientInfo"
+                            android:layout_width="187dp"
+                            android:layout_height="55dp"
+                            android:layout_marginTop="3dp"
+                            android:layout_marginStart="1dp"
+                            android:hint="Nationality">
+
+                            <com.google.android.material.textfield.TextInputEditText
+                                android:id="@+id/edtNationalityPatientInfo"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:maxLength="50"
+                                android:drawablePadding="10dp"
+                                android:drawableStart="@drawable/ic_nationality"
+                                android:inputType="textCapWords" />
+                        </com.google.android.material.textfield.TextInputLayout>
+
+                        <com.google.android.material.textfield.TextInputLayout
+                            android:id="@+id/layout_edtContactPatientInfo"
+                            android:layout_width="187dp"
+                            android:layout_height="55dp"
+                            android:layout_marginTop="3dp"
+                            android:layout_marginStart="10dp"
+                            android:hint="Contact No.">
+
+                            <com.google.android.material.textfield.TextInputEditText
+                                android:id="@+id/edtContactPatientInfo"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:maxLength="50"
+                                android:drawablePadding="10dp"
+                                android:drawableStart="@drawable/ic_phone"
+                                android:inputType="textCapWords" />
+                        </com.google.android.material.textfield.TextInputLayout>
+                    </LinearLayout>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <!-- Name of significant -->
+                    <com.google.android.material.textfield.TextInputLayout
+                        android:id="@+id/layout_edtNameOfSignificantPatientInfo"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginVertical="3dp"
+                        android:hint="Name of Significant">
+
+                        <com.google.android.material.textfield.TextInputEditText
+                            android:id="@+id/edtNameOfSignificantPatientInfo"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:maxLength="50"
+                            android:drawableStart="@drawable/ic_person"
+                            android:drawablePadding="10dp"
+                            android:inputType="textCapWords" />
+                    </com.google.android.material.textfield.TextInputLayout>
+
+                </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+                                            <!--Relationship and Contact no.-->
+                        <com.google.android.material.textfield.TextInputLayout
+                            android:id="@+id/layout_edtRelationshipPatientInfo"
+                            android:layout_width="187dp"
+                            android:layout_height="55dp"
+                            android:layout_marginTop="3dp"
+                            android:layout_marginStart="1dp"
+                            android:hint="Relationship ">
+
+                            <com.google.android.material.textfield.TextInputEditText
+                                android:id="@+id/edtRelationshipPatientInfo"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:maxLength="50"
+                                android:drawablePadding="10dp"
+                                android:drawableStart="@drawable/ic_nationality"
+                                android:inputType="textCapWords" />
+                        </com.google.android.material.textfield.TextInputLayout>
+
+                        <com.google.android.material.textfield.TextInputLayout
+                            android:id="@+id/layout_edtSignificantContactPatientInfo"
+                            android:layout_width="187dp"
+                            android:layout_height="55dp"
+                            android:layout_marginTop="3dp"
+                            android:layout_marginStart="10dp"
+                            android:hint="Contact No.">
+
+                            <com.google.android.material.textfield.TextInputEditText
+                                android:id="@+id/edtSignificantContactPatientInfo"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:maxLength="50"
+                                android:drawablePadding="10dp"
+                                android:drawableStart="@drawable/ic_phone"
+                                android:inputType="textCapWords" />
+                        </com.google.android.material.textfield.TextInputLayout>
+                    </LinearLayout>
+
+
+
+                </LinearLayout>
+            </RelativeLayout>
+        </androidx.cardview.widget.CardView>
+
+        <!--Patient Information Layout card view-->
+
+        <androidx.cardview.widget.CardView
+            android:id="@+id/IncidentDetails"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="1dp"
+            app:cardElevation="2dp"
+            app:cardCornerRadius="8dp">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <RelativeLayout
+                    android:id="@+id/headerIncidentDetails"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:padding="12dp">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:drawableStart="@drawable/ic_person"
+                        android:drawablePadding="8dp"
+                        android:text="Patient Information"
+                        android:textSize="16sp"
+                        android:textStyle="bold"
+                        android:layout_alignParentStart="true"
+                        android:layout_centerVertical="true"/>
+
+                    <ImageView
+                        android:id="@+id/toggleIncidentDetails"
+                        android:layout_width="24dp"
+                        android:layout_height="24dp"
+                        android:src="@drawable/ic_drop_down"
+                        android:layout_alignParentEnd="true"
+                        android:layout_centerVertical="true"/>
+                </RelativeLayout>
+
+                <!-- Hidden Content of Patient Information -->
+                <LinearLayout
+                    android:id="@+id/layoutIncidentDetails"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:padding="12dp"
+                    android:layout_below="@id/headerIncidentDetails"
+                    android:visibility="gone">
+
+
+
+
+
+
+                </LinearLayout>
+            </RelativeLayout>
+        </androidx.cardview.widget.CardView>
+
+
+
         <!-- Buttons of Draft and Submit -->
         <LinearLayout
             android:id="@+id/buttonContainer"
@@ -333,25 +661,34 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
             android:orientation="horizontal"
-            android:paddingHorizontal="8dp">
+            android:padding="16dp"
+            android:elevation="8dp">
 
-            <Button
+            <com.google.android.material.button.MaterialButton
                 android:id="@+id/btnSaveDraft"
                 android:layout_width="0dp"
-                android:layout_height="wrap_content"
+                android:layout_height="60dp"
                 android:layout_weight="1"
+                android:layout_marginStart="10dp"
+                android:layout_marginEnd="10dp"
                 android:backgroundTint="@color/light_gray"
                 android:text="Save Draft"
-                android:textColor="@android:color/black"/>
+                android:textColor="@color/black" />
 
-            <Button
-                android:id="@+id/btnSubmitReport"
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/btnSubmit"
                 android:layout_width="0dp"
-                android:layout_height="wrap_content"
+                android:layout_height="60dp"
                 android:layout_weight="1"
+                android:layout_marginStart="10dp"
+                android:layout_marginEnd="10dp"
                 android:backgroundTint="@color/forest_green"
                 android:text="Submit Report"
-                android:textColor="@android:color/white"/>
+                android:textColor="@color/white" />
         </LinearLayout>
+
+
+
     </LinearLayout>
+
 </ScrollView>
