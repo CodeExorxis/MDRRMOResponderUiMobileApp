@@ -1,5 +1,6 @@
 package com.example.rescueappforresponder;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Toast;
@@ -64,6 +65,11 @@ public class MainActivity extends AppCompatActivity {
             root.btnPcrReport.setVisibility(View.VISIBLE);
             resetSelectedStatus();
             selectedStatus = "";
+        });
+
+        root.btnPCRForm.setOnClickListener(v -> {
+            Intent intent = new Intent(MainActivity.this, PCR_Form_Activity.class);
+            startActivity(intent);
         });
     }
     private void resetSelectedStatus() {

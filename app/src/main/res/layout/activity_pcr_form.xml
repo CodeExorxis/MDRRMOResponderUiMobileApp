@@ -1,104 +1,357 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
+    android:fillViewport="true"
     android:background="@color/white"
     tools:context=".PCR_Form_Activity">
-
-    <TextView
-        android:id="@+id/tv_PatientCareReportForm"
-        android:layout_width="match_parent"
-        android:layout_height="50dp"
-        android:textSize="20sp"
-        android:textStyle="bold"
-        android:textColor="@color/white"
-        android:text="Patient care Report Form"
-        android:background="@color/forest_green"
-        android:gravity="center"/>
-    
-    <androidx.cardview.widget.CardView
-        android:id="@+id/CallerInformation"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
-        app:cardElevation="2dp"
-        app:cardCornerRadius="8dp">
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical">
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:padding="12dp"
-                android:orientation="horizontal"
-                android:gravity="center">
-
-                <TextView
-                    android:layout_width="0dp"
-                    android:layout_weight="1"
-                    android:layout_height="wrap_content"
-                    android:text="Caller Information"
-                    android:textSize="16sp"
-                    android:textStyle="bold"/>
-
-                <ImageView
-                    android:id="@+id/toggleCallInfo"
-                    android:layout_width="24dp"
-                    android:layout_height="24dp"
-                    android:src="@drawable/ic_drop_down" />
-            </LinearLayout>
-
-            <LinearLayout
-                android:id="@+id/layoutCallInfo"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="vertical"
-                android:visibility="gone"
-                android:padding="12dp">
-
-                <EditText
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:hint="Enter Call Details" />
-            </LinearLayout>
-        </LinearLayout>
-    </androidx.cardview.widget.CardView>
-
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:gravity="center"
-        android:orientation="horizontal">
+        android:orientation="vertical"
+        android:paddingBottom="16dp">
 
-        <Button
-            android:id="@+id/btnSaveDraft"
-            android:layout_width="0dp"
+        <!-- Header of the layout -->
+        <TextView
+            android:id="@+id/tv_PatientCareReportForm"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            android:textColor="@color/white"
+            android:text="Patient care Report Form"
+            android:background="@color/forest_green"
+            android:gravity="center" />
+
+        <!-- Caller Information Card -->
+        <androidx.cardview.widget.CardView
+            android:id="@+id/CallerInformation"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:backgroundTint="#E0E0E0"
-            android:text="Save Draft"
-            android:textColor="@android:color/black" />
+            android:layout_marginTop="8dp"
+            app:cardElevation="2dp"
+            app:cardCornerRadius="8dp">
 
-        <View
-            android:layout_width="8dp"
-            android:layout_height="match_parent" />
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
 
-        <Button
-            android:id="@+id/btnSubmitReport"
-            android:layout_width="0dp"
+                <!-- Title Row -->
+                <RelativeLayout
+                    android:id="@+id/headerCallInfo"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:padding="12dp">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:drawableStart="@drawable/ic_clock"
+                        android:drawablePadding="8dp"
+                        android:text="Caller Information"
+                        android:textSize="16sp"
+                        android:textStyle="bold"
+                        android:layout_alignParentStart="true"
+                        android:layout_centerVertical="true"/>
+
+                    <ImageView
+                        android:id="@+id/toggleCallInfo"
+                        android:layout_width="24dp"
+                        android:layout_height="24dp"
+                        android:src="@drawable/ic_drop_down"
+                        android:layout_alignParentEnd="true"
+                        android:layout_centerVertical="true"/>
+                </RelativeLayout>
+
+                <!-- Hidden Content of caller Information -->
+                <LinearLayout
+                    android:id="@+id/layoutCallInfo"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:padding="12dp"
+                    android:layout_below="@id/headerCallInfo"
+                    android:visibility="gone">
+
+                    <!-- Name of Caller -->
+                    <com.google.android.material.textfield.TextInputLayout
+                        android:id="@+id/layout_edtCallersName"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginVertical="3dp"
+                        android:hint="Name of the Caller">
+
+                        <com.google.android.material.textfield.TextInputEditText
+                            android:id="@+id/edtCallersName"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:maxLength="50"
+                            android:drawableStart="@drawable/ic_person"
+                            android:drawablePadding="10dp"
+                            android:inputType="textCapWords" />
+                    </com.google.android.material.textfield.TextInputLayout>
+
+                    <!-- Time of call -->
+                    <com.google.android.material.textfield.TextInputLayout
+                        android:id="@+id/layout_edtTimeOfCall"
+                        android:layout_width="200dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginVertical="3dp"
+                        android:hint="Time of call">
+
+                        <com.google.android.material.textfield.TextInputEditText
+                            android:id="@+id/edtTimeOfCall"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:maxLength="50"
+                            android:drawableStart="@drawable/ic_clock"
+                            android:drawablePadding="10dp"
+                            android:inputType="textCapWords" />
+                    </com.google.android.material.textfield.TextInputLayout>
+
+                    <!-- Time Activated -->
+                    <com.google.android.material.textfield.TextInputLayout
+                        android:id="@+id/layout_edtTimeActivated"
+                        android:layout_width="200dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginVertical="3dp"
+                        android:hint="Time Activated">
+
+                        <com.google.android.material.textfield.TextInputEditText
+                            android:id="@+id/edtTimeActivated"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:maxLength="50"
+                            android:drawableStart="@drawable/ic_clock"
+                            android:drawablePadding="10dp"
+                            android:inputType="textCapWords" />
+                    </com.google.android.material.textfield.TextInputLayout>
+
+                    <!-- Date of Response -->
+                    <com.google.android.material.textfield.TextInputLayout
+                        android:id="@+id/layout_edtDateOfResponse"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginVertical="3dp"
+                        android:hint="Date of Response (mm/dd/yyyy)">
+
+                        <com.google.android.material.textfield.TextInputEditText
+                            android:id="@+id/edtDateOfResponse"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:maxLength="50"
+                            android:drawableStart="@drawable/ic_date"
+                            android:drawablePadding="10dp"
+                            android:inputType="textCapWords" />
+                    </com.google.android.material.textfield.TextInputLayout>
+
+                    <!-- Informed By -->
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginVertical="15sp"
+                        android:text="Informed By"
+                        android:textSize="15sp"
+                        android:textStyle="bold"
+                        android:layout_marginBottom="16dp"/>
+
+                    <!--Radio group for informed by-->
+                    <RadioGroup
+                        android:id="@+id/RadioGroupInformedBy"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical">
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal">
+
+                            <RadioButton
+                                android:id="@+id/RbByStander"
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                android:text="By-stander"/>
+
+                            <RadioButton
+                                android:id="@+id/RbBrgyOfficial"
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                android:text="Brgy. Official"/>
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal">
+
+                            <RadioButton
+                                android:id="@+id/RbFireFighter"
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                android:text="Fire Fighter"/>
+
+                            <RadioButton
+                                android:id="@+id/RbPolice"
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                android:text="Police"/>
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal">
+
+                            <RadioButton
+                                android:id="@+id/RbRescueGroup"
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                android:text="Rescue Group"/>
+
+                            <RadioButton
+                                android:id="@+id/RbOthers"
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                android:text="Others"/>
+                        </LinearLayout>
+                    </RadioGroup>
+
+                    <!-- Hidden input for Other -->
+                    <EditText
+                        android:id="@+id/edtOtherInformedBy"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="Please specify..."
+                        android:visibility="gone"
+                        android:inputType="textPersonName"
+                        android:layout_marginTop="4dp"/>
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="20dp"
+                        android:layout_marginBottom="8dp"
+                        android:text="Inform Through"
+                        android:textSize="15sp"
+                        android:textStyle="bold"/>
+                                <!--Radio group of Inform Through-->
+                    <RadioGroup
+                        android:id="@+id/RadioGroupInformThrough"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical">
+
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal">
+
+                            <RadioButton
+                                android:id="@+id/RbRadio"
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                android:text="Radio"/>
+
+                            <RadioButton
+                                android:id="@+id/RbMobilePhone"
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                android:text="Mobile Phone"/>
+                        </LinearLayout>
+
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal">
+
+                            <RadioButton
+                                android:id="@+id/RbVerbal"
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                android:text="Verbal"/>
+
+                            <RadioButton
+                                android:id="@+id/RbOtherInformThrough"
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                android:text="Other"/>
+                        </LinearLayout>
+                    </RadioGroup>
+
+                    <!-- Hidden input for Other "Inform Through" -->
+                    <EditText
+                        android:id="@+id/edtOtherInformThrough"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="Please specify..."
+                        android:visibility="gone"
+                        android:inputType="textPersonName"
+                        android:layout_marginTop="4dp"/>
+
+                    <!--patient Location-->
+                    <com.google.android.material.textfield.TextInputLayout
+                        android:id="@+id/layout_edtPatientLocation"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginVertical="3dp"
+                        android:hint="Patient Location">
+
+                        <com.google.android.material.textfield.TextInputEditText
+                            android:id="@+id/edtPatientLocation"
+                            android:layout_width="match_parent"
+                            android:layout_height="100dp"
+                            android:maxLength="50"
+                            android:drawableStart="@drawable/ic_person"
+                            android:drawablePadding="10dp"
+                            android:inputType="textCapWords" />
+                    </com.google.android.material.textfield.TextInputLayout>
+
+                </LinearLayout>
+            </RelativeLayout>
+        </androidx.cardview.widget.CardView>
+
+        <!-- Buttons of Draft and Submit -->
+        <LinearLayout
+            android:id="@+id/buttonContainer"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:backgroundTint="@color/forest_green"
-            android:text="Submit Report"
-            android:textColor="@android:color/white" />
+            android:layout_marginTop="16dp"
+            android:orientation="horizontal"
+            android:paddingHorizontal="8dp">
+
+            <Button
+                android:id="@+id/btnSaveDraft"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:backgroundTint="@color/light_gray"
+                android:text="Save Draft"
+                android:textColor="@android:color/black"/>
+
+            <Button
+                android:id="@+id/btnSubmitReport"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:backgroundTint="@color/forest_green"
+                android:text="Submit Report"
+                android:textColor="@android:color/white"/>
+        </LinearLayout>
     </LinearLayout>
-</LinearLayout>
+</ScrollView>
