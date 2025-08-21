@@ -14,5 +14,6 @@
     <string name="submit_button_text">Submit</string>
     <string name="StatsReport">STATUS Report</string>
     <string name="PcrReport">PCR Report</string>
+    <string name="assessmentDesc">identify the are of injury with the following numbers:</string>
 
 </resources>

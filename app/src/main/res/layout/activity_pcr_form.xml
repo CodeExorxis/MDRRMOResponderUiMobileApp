@@ -593,7 +593,7 @@
             </RelativeLayout>
         </androidx.cardview.widget.CardView>
 
-        <!--Patient Information Layout card view-->
+        <!--Incident details Layout card view-->
 
         <androidx.cardview.widget.CardView
             android:id="@+id/IncidentDetails"
@@ -616,9 +616,9 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:drawableStart="@drawable/ic_person"
+                        android:drawableStart="@drawable/ic_warning"
                         android:drawablePadding="8dp"
-                        android:text="Patient Information"
+                        android:text="Incident Details"
                         android:textSize="16sp"
                         android:textStyle="bold"
                         android:layout_alignParentStart="true"
@@ -633,7 +633,7 @@
                         android:layout_centerVertical="true"/>
                 </RelativeLayout>
 
-                <!-- Hidden Content of Patient Information -->
+                <!-- Hidden Content of Incident Details -->
                 <LinearLayout
                     android:id="@+id/layoutIncidentDetails"
                     android:layout_width="match_parent"
@@ -643,16 +643,344 @@
                     android:layout_below="@id/headerIncidentDetails"
                     android:visibility="gone">
 
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Nature of Reported Incident"
+                        android:textStyle="bold"
+                        android:textSize="17sp"/>
+
+                                        <!--Radio group for Incident Report-->
+                    <RadioGroup
+                        android:id="@+id/RadioGroupNatureIncident"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical">
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal">
+
+                            <RadioButton
+                                android:id="@+id/RbVehicularAccidentNature"
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                android:text="Vehicular Accident"/>
+
+                            <RadioButton
+                                android:id="@+id/RbFireNature"
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                android:text="Fire"/>
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal">
+
+                            <RadioButton
+                                android:id="@+id/RbMedicalEmergencyNature"
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                android:text="Medical Emergency"/>
+
+                            <RadioButton
+                                android:id="@+id/RbDrowningNature"
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                android:text="Drowning"/>
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal">
+
+                            <RadioButton
+                                android:id="@+id/RbFallNature"
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                android:text="Fall"/>
+
+                            <RadioButton
+                                android:id="@+id/RbNatureOther"
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                android:text="Others"/>
+                        </LinearLayout>
+                    </RadioGroup>
+
+                    <!-- Hidden input for Other "Nature Reported Incident" -->
+                    <EditText
+                        android:id="@+id/edtOtherNatureReport"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="Please specify..."
+                        android:visibility="gone"
+                        android:inputType="textPersonName"
+                        android:layout_marginTop="4dp"/>
 
 
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Patient Found At"
+                        android:textStyle="bold"
+                        android:textSize="17sp"/>
+
+                    <!--Radio group for Patient Found At-->
+                    <RadioGroup
+                        android:id="@+id/RadioGroupPatientFoundAt"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical">
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal">
+
+                            <RadioButton
+                                android:id="@+id/RbRoadSideFound"
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                android:text="Roadside"/>
+
+                            <RadioButton
+                                android:id="@+id/RbInsideBuildingFound"
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                android:text="Inside Building"/>
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal">
+
+                            <RadioButton
+                                android:id="@+id/RbCreekSideFound"
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                android:text="Creek Side"/>
+
+                            <RadioButton
+                                android:id="@+id/RbInsideVehicleFound"
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                android:text="Inside Vehicle"/>
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal">
+
+                            <RadioButton
+                                android:id="@+id/RbFoundOther"
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                android:text="Others"/>
+                        </LinearLayout>
+                    </RadioGroup>
+
+                    <!-- Hidden input for Other "Patient found at" -->
+                    <EditText
+                        android:id="@+id/edtOtherFound"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="Please specify..."
+                        android:visibility="gone"
+                        android:inputType="textPersonName"
+                        android:layout_marginTop="4dp"/>
 
 
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Patient Condition"
+                        android:textStyle="bold"
+                        android:textSize="17sp"/>
+
+                    <!--Radio group for Patient Condition-->
+                    <RadioGroup
+                        android:id="@+id/RadioGroupPatientCondtion"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical">
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal">
+
+                            <RadioButton
+                                android:id="@+id/RbLyingCondition"
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                android:text="Lying"/>
+
+                            <RadioButton
+                                android:id="@+id/RbSittingCondition"
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                android:text="Sitting"/>
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal">
+
+                            <RadioButton
+                                android:id="@+id/RbStuckCondition"
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                android:text="Stuck"/>
+
+                            <RadioButton
+                                android:id="@+id/RbOtherPatientCondition"
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                android:text="Others"/>
+                        </LinearLayout>
+                    </RadioGroup>
+
+                    <!-- Hidden input for Other "Patient Condition" -->
+                    <EditText
+                        android:id="@+id/edtOtherPatientCondition"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="Please specify..."
+                        android:visibility="gone"
+                        android:inputType="textPersonName"
+                        android:layout_marginTop="4dp"/>
 
                 </LinearLayout>
             </RelativeLayout>
         </androidx.cardview.widget.CardView>
+                             <!--Assesment Layout card view-->
+
+        <androidx.cardview.widget.CardView
+            android:id="@+id/Assessment"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="1dp"
+            app:cardElevation="2dp"
+            app:cardCornerRadius="8dp">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <RelativeLayout
+                    android:id="@+id/headerAssessment"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:padding="12dp">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:drawableStart="@drawable/ic_pulse"
+                        android:drawablePadding="8dp"
+                        android:text="Assessment"
+                        android:textSize="16sp"
+                        android:textStyle="bold"
+                        android:layout_alignParentStart="true"
+                        android:layout_centerVertical="true"/>
+
+                    <ImageView
+                        android:id="@+id/toggleAssessment"
+                        android:layout_width="24dp"
+                        android:layout_height="24dp"
+                        android:src="@drawable/ic_drop_down"
+                        android:layout_alignParentEnd="true"
+                        android:layout_centerVertical="true"/>
+                </RelativeLayout>
+
+                <!-- Hidden Content of Assesment -->
+                <LinearLayout
+                    android:id="@+id/layoutAssessment"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:padding="12dp"
+                    android:layout_below="@id/headerAssessment"
+                    android:visibility="gonee">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Initial Assessment"
+                        android:textSize="17sp"
+                        android:textStyle="bold"/>
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Nature of Incident"
+                        android:layout_marginTop="5dp"
+                        android:textSize="15sp"/>
+
+                    <!--Radio group for Assessment-->
+                    <RadioGroup
+                        android:id="@+id/RadioGroupAssessment"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+
+                        <RadioButton
+                            android:id="@+id/RbMedicalAssessment"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:text="Medical"/>
+
+                        <RadioButton
+                            android:id="@+id/RbTraumaAssessment"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:text="Trauma"/>
+
+                    </RadioGroup>
 
 
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Area of Injury"
+                    android:textSize="17sp"
+                    android:textStyle="bold"
+                    android:layout_marginTop="15dp"/>
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="5dp"
+                        android:textSize="17sp"
+                        android:text="@string/assessmentDesc"/>
+
+                </LinearLayout>
+            </RelativeLayout>
+        </androidx.cardview.widget.CardView>
 
         <!-- Buttons of Draft and Submit -->
         <LinearLayout

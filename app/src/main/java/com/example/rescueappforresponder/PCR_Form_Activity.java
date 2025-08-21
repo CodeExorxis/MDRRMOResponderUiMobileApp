@@ -137,7 +137,8 @@ public class PCR_Form_Activity extends AppCompatActivity {
                 root.edtOtherInformThrough.setVisibility(View.GONE);
             }
         });
-                    //Patient Information Layout
+
+                                                                        //Patient Information Layout
 
         // Toggle for Patient Information
         root.togglePatientInfo.setOnClickListener(v -> {
@@ -186,6 +187,62 @@ public class PCR_Form_Activity extends AppCompatActivity {
             datePickerDialog.setTitle("Select Date");
             datePickerDialog.show();
         });
+
+
+                                                        //Incident Details Layout
+
+        // Toggle for Incident Details
+        root.toggleIncidentDetails.setOnClickListener(v -> {
+            if (root.layoutIncidentDetails.getVisibility() == View.GONE) {
+                root.layoutIncidentDetails.setVisibility(View.VISIBLE);
+                root.toggleIncidentDetails.setImageResource(R.drawable.ic_drop_up);
+            } else {
+                root.layoutIncidentDetails.setVisibility(View.GONE);
+                root.toggleIncidentDetails.setImageResource(R.drawable.ic_drop_down);
+            }
+        });
+                                                //Radio Group Nature of Reported Incident
+        root.RbNatureOther.setOnCheckedChangeListener((buttonView, isChecked) -> {
+            if (isChecked) {
+                root.edtOtherNatureReport.setVisibility(View.VISIBLE);
+            } else {
+                root.edtOtherNatureReport.setVisibility(View.GONE);
+            }
+        });
+
+                                                        //Radio Group Patient Found At
+        root.RbFoundOther.setOnCheckedChangeListener((buttonView, isChecked) -> {
+            if (isChecked) {
+                root.edtOtherFound.setVisibility(View.VISIBLE);
+            } else {
+                root.edtOtherFound.setVisibility(View.GONE);
+            }
+        });
+
+                                                        //Radio Group Patient Condition
+        root.RbOtherPatientCondition.setOnCheckedChangeListener((buttonView, isChecked) -> {
+            if (isChecked) {
+                root.edtOtherPatientCondition.setVisibility(View.VISIBLE);
+            } else {
+                root.edtOtherPatientCondition.setVisibility(View.GONE);
+            }
+        });
+
+
+                                                            //Assessment  Layout
+
+        // Toggle for Assessment
+        root.toggleAssessment.setOnClickListener(v -> {
+            if (root.layoutAssessment.getVisibility() == View.GONE) {
+                root.layoutAssessment.setVisibility(View.VISIBLE);
+                root.toggleAssessment.setImageResource(R.drawable.ic_drop_up);
+            } else {
+                root.layoutAssessment.setVisibility(View.GONE);
+                root.toggleAssessment.setImageResource(R.drawable.ic_drop_down);
+            }
+        });
+
+
 
     }
 }
