@@ -243,6 +243,49 @@ public class PCR_Form_Activity extends AppCompatActivity {
         });
 
 
+                                                             //Vital Signs  Layout
+
+        // Toggle for Vital Signs
+        root.toggleVitalSigns.setOnClickListener(v -> {
+            if (root.layoutVitalSigns.getVisibility() == View.GONE) {
+                root.layoutVitalSigns.setVisibility(View.VISIBLE);
+                root.toggleVitalSigns.setImageResource(R.drawable.ic_drop_up);
+            } else {
+                root.layoutVitalSigns.setVisibility(View.GONE);
+                root.toggleVitalSigns.setImageResource(R.drawable.ic_drop_down);
+            }
+        });
+
+        String[] eyeOpeningOptions = {"Select", "4 - Spontaneous", "3 - To Speech", " 2 - To Pain", "1 - None"};
+
+        ArrayAdapter<String> adapterEyeOpening = new ArrayAdapter<>(
+                this,
+                android.R.layout.simple_dropdown_item_1line,
+                eyeOpeningOptions
+        );
+
+        root.spinnerEyeOpening.setAdapter(adapterEyeOpening);
+
+        String[] verbalResponseOptions = {"Select", "5 - Oriented", "4 - Confused", "3 - Inappropriate", " 2 - Incomprehensible", "1 - None"};
+
+        ArrayAdapter<String> adapterVerbalResponse = new ArrayAdapter<>(
+                this,
+                android.R.layout.simple_dropdown_item_1line,
+                verbalResponseOptions
+        );
+
+        root.spinnerVerbalResponse.setAdapter(adapterVerbalResponse);
+
+        String[] motorResponseOptions = {"Select", "5 - Oriented", "4 - Confused", "3 - Inappropriate", " 2 - Incomprehensible", "1 - None"};
+
+        ArrayAdapter<String> adapterMotorResponse = new ArrayAdapter<>(
+                this,
+                android.R.layout.simple_dropdown_item_1line,
+                motorResponseOptions
+        );
+
+        root.spinnerMotorResponse.setAdapter(adapterMotorResponse);
+
 
     }
 }
