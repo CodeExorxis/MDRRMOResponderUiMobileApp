@@ -71,10 +71,19 @@ public class MainActivity extends AppCompatActivity {
             Intent intent = new Intent(MainActivity.this, PCR_Form_Activity.class);
             startActivity(intent);
         });
+
+        root.btnRefusalForm.setOnClickListener(v -> {
+            Intent intent = new Intent(MainActivity.this, transport_refusal_Activity.class);
+            startActivity(intent);
+        });
     }
+
+
     private void resetSelectedStatus() {
         root.btnOnScene.setBackgroundResource(R.drawable.btn_flat_red);
         root.btnTransferPatient.setBackgroundResource(R.drawable.btn_flat_red);
         root.btnCompleted.setBackgroundResource(R.drawable.btn_flat_red);
+        root.btnPCRForm.setBackgroundResource(R.drawable.btn_flat_red);
+        root.btnRefusalForm.setBackgroundResource(R.drawable.btn_flat_red);
     }
 }

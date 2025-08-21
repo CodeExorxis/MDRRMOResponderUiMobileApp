@@ -1,10 +1,14 @@
 package com.example.rescueappforresponder;
 
+import static android.widget.Toast.makeText;
+
 import android.app.DatePickerDialog;
 import android.app.TimePickerDialog;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ArrayAdapter;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -285,6 +289,15 @@ public class PCR_Form_Activity extends AppCompatActivity {
         );
 
         root.spinnerMotorResponse.setAdapter(adapterMotorResponse);
+
+        //Buttons of Safe drafts and Submit
+
+        root.btnSubmit.setOnClickListener(v -> {
+            makeText(this, "", Toast.LENGTH_SHORT).show();makeText(PCR_Form_Activity.this, "Submitted Successfully", Toast.LENGTH_SHORT).show();
+            Intent intent = new Intent(PCR_Form_Activity.this, MainActivity.class);
+            startActivity(intent);
+            finish();
+        });
 
 
     }
