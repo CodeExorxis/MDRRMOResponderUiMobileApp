@@ -1,0 +1,30 @@
+{
+  "project_info": {
+    "project_number": "389741892505",
+    "firebase_url": "https://go-rescue-database-default-rtdb.asia-southeast1.firebasedatabase.app",
+    "project_id": "go-rescue-database",
+    "storage_bucket": "go-rescue-database.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:389741892505:android:217614f86acf7905aff908",
+        "android_client_info": {
+          "package_name": "com.example.rescueappforresponder"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBElzvsPjvMZveplHRvT9OazMCa4nKxMis"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
