@@ -49,32 +49,32 @@
         android:inputType="textPassword"
         android:background="@drawable/edt_login_background"
         android:backgroundTint="@color/white" />
+
     <TextView
         android:id="@+id/txtForgot_password"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@id/edtPassword"
         android:layout_marginLeft="80sp"
-        android:layout_marginTop="20sp"
-        android:textSize="15sp"
+        android:layout_marginTop="18dp"
+        android:text="Remember me"
         android:textColor="@color/blue"
-        android:textStyle="bold"
-        android:text="Remember me"/>
+        android:textSize="15sp"
+        android:textStyle="bold" />
 
     <Button
         android:id="@+id/btn_login"
         android:layout_width="match_parent"
         android:layout_height="60dp"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="120dp"
-        android:layout_marginRight="100dp"
-        android:layout_marginLeft="100dp"
         android:layout_below="@id/edtPassword"
-        android:textSize="25sp"
-        android:text="Login"
-        app:backgroundTint="@null"
-        android:textColor="@color/gray"
-        android:textStyle="bold"
+        android:layout_centerHorizontal="true"
+        android:layout_marginLeft="100dp"
+        android:layout_marginTop="41dp"
+        android:layout_marginRight="100dp"
         android:background="@drawable/btn_login"
-        />
+        android:text="Login"
+        android:textColor="@color/gray"
+        android:textSize="25sp"
+        android:textStyle="bold"
+        app:backgroundTint="@null" />
 </RelativeLayout>

@@ -1,4 +1,4 @@
-package com.example.rescueappforresponder;
+package com.example.rescueappforresponder.activities;
 
 import static android.widget.Toast.makeText;
 
@@ -12,6 +12,7 @@ import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.example.rescueappforresponder.R;
 import com.example.rescueappforresponder.databinding.ActivityPcrFormBinding;
 
 import java.text.SimpleDateFormat;

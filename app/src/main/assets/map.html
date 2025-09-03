@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css"/>
+    <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+    <style>
+        html, body, #map {
+          height: 100%;
+          margin: 0;
+          padding: 0;
+        }
+
+        .incident-marker {
+            border: 2px solid white;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.3);
+        }
+
+        .status-pending { background-color: #ff4444; }
+        .status-acknowledged { background-color: #ff8800; }
+        .status-in-progress { background-color: #4444ff; }
+        .status-completed { background-color: #44ff44; }
+    </style>
+</head>
+<body>
+<div id="map"></div>
+<script>
+    var map = L.map('map').setView([15.5784, 120.6819], 14);
+
+    L.tileLayer(
+      "https://maps.geoapify.com/v1/tile/osm-bright/{z}/{x}/{y}.png?apiKey=499958bc884b4b8cae36c651db0a3d7d",
+      { attribution: '© OpenStreetMap contributors © Geoapify', maxZoom: 20 }
+    ).addTo(map);
+
+    var baseIcon = L.icon({
+        iconUrl: 'data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjQiIGhlaWdodD0iMjQiIHZpZXdCb3g9IjAgMCAyNCAyNCIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPHBhdGggZD0iTTEyIDJMMTMuMDkgOC4yNkwyMCA5TDEzLjA5IDE1Ljc0TDEyIDIyTDEwLjkxIDE1Ljc0TDQgOUwxMC45MSA4LjI2TDEyIDJaIiBmaWxsPSIjMDA3N2ZmIiBzdHJva2U9IiNmZmZmZmYiIHN0cm9rZS13aWR0aD0iMiIvPgo8L3N2Zz4K',
+        iconSize: [24, 24],
+        iconAnchor: [12, 12],
+        popupAnchor: [0, -12]
+    });
+
+    L.marker([15.575655566972936, 120.66871904558153], {icon: baseIcon})
+        .addTo(map)
+        .bindPopup("<b>🏥 Responder Base</b><br>Emergency Response Unit");
+
+    var incidentMarkers = new Map();
+    var userLocationMarker = null;
+
+    function createPopupContent(type, severity, status, lat, lng) {
+        const statusEmoji = {
+            'pending': '🔴',
+            'acknowledged': '🟠',
+            'in progress': '🔵',
+            'completed': '🟢'
+        };
+
+        const typeEmoji = {
+            'medical': '🏥',
+            'accident': '🚗',
+            'natural disaster': '🌪️'
+        };
+
+        return `
+            <div style="min-width: 200px;">
+                <h4>${typeEmoji[type.toLowerCase()] || '🚨'} ${type}</h4>
+                <p><strong>Severity:</strong> ${severity}</p>
+                <p><strong>Status:</strong> ${statusEmoji[status.toLowerCase()] || '⚪'} ${status}</p>
+                <p><strong>Location:</strong> ${lat.toFixed(4)}, ${lng.toFixed(4)}</p>
+            </div>
+        `;
+    }
+
+    function addIncidentMarker(lat, lng, type, severity, status = 'pending', incidentId = null) {
+        if (!lat || !lng) {
+            console.warn('Invalid coordinates provided:', lat, lng);
+            return;
+        }
+
+        if (incidentId && incidentMarkers.has(incidentId)) {
+            map.removeLayer(incidentMarkers.get(incidentId));
+        }
+
+        const statusColorMap = {
+            'pending': '#ff4444',
+            'acknowledged': '#ff8800',
+            'in progress': '#4444ff',
+            'completed': '#44ff44'
+        };
+
+        const markerColor = statusColorMap[status.toLowerCase()] || '#888888';
+
+        const severityRadiusMap = {
+            'low': 6,
+            'medium': 8,
+            'high': 10,
+            'critical': 12
+        };
+        const radius = severityRadiusMap[severity.toLowerCase()] || 8;
+
+        var marker = L.circleMarker([lat, lng], {
+            color: 'white',
+            fillColor: markerColor,
+            radius: radius,
+            fillOpacity: 0.8,
+            weight: 2,
+            className: 'incident-marker'
+        }).addTo(map);
+
+        marker.bindPopup(createPopupContent(type, severity, status, lat, lng));
+
+        if (incidentId) {
+            // Store the marker and its data
+            marker.incidentData = { type, severity };
+            incidentMarkers.set(incidentId, marker);
+        } else {
+            const tempId = `temp_${Date.now()}_${Math.random().toString(36).substr(2, 9)}`;
+            marker.incidentData = { type, severity };
+            incidentMarkers.set(tempId, marker);
+        }
+
+        console.log(`Added ${status} incident marker at [${lat}, ${lng}] for ${type}`);
+        return marker;
+    }
+
+    function updateIncidentStatus(incidentId, newStatus) {
+        if (incidentMarkers.has(incidentId)) {
+            const marker = incidentMarkers.get(incidentId);
+            const latLng = marker.getLatLng();
+            const { type, severity } = marker.incidentData;
+
+            // Remove the old marker
+            map.removeLayer(marker);
+
+            // Recreate the marker with the new status
+            const newMarker = addIncidentMarker(latLng.lat, latLng.lng, type, severity, newStatus, incidentId);
+
+            console.log(`Updated incident ${incidentId} status to ${newStatus}`);
+            return newMarker;
+        } else {
+            console.warn(`Attempted to update a non-existent marker with ID: ${incidentId}`);
+            return null;
+        }
+    }
+
+    function updateLocation(lat, lng) {
+        if (!lat || !lng) {
+            console.warn('Invalid location coordinates:', lat, lng);
+            return;
+        }
+
+        if (userLocationMarker) {
+            map.removeLayer(userLocationMarker);
+        }
+
+        userLocationMarker = L.circleMarker([lat, lng], {
+            radius: 10,
+            color: "#0066ff",
+            fillColor: "#0088ff",
+            fillOpacity: 0.7,
+            weight: 3
+        }).addTo(map);
+
+        userLocationMarker.bindPopup("📍 Your Current Location").openPopup();
+
+        map.setView([lat, lng], Math.max(map.getZoom(), 14), {
+            animate: true,
+            duration: 1
+        });
+
+        console.log(`Updated user location to [${lat}, ${lng}]`);
+    }
+
+    function clearIncidentMarkers() {
+        incidentMarkers.forEach(marker => {
+            map.removeLayer(marker);
+        });
+        incidentMarkers.clear();
+        console.log('Cleared all incident markers');
+    }
+
+    function getIncidentCount() {
+        return incidentMarkers.size;
+    }
+
+    console.log('Map initialized successfully');
+
+    // Add this variable to track the map's readiness
+    var mapReady = false;
+
+    // A function to let the Android app know the map is fully loaded
+    function isMapReady() {
+        return mapReady;
+    }
+
+    // Set mapReady to true after the map is fully initialized
+    map.whenReady(function() {
+        mapReady = true;
+        console.log("Map initialized and ready.");
+    });
+</script>
+</body>
+</html>
